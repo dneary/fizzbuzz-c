@@ -22,11 +22,19 @@ int main(void)
 
     for(i=1; i<=100; i++)
     {
-        if ((i % 3 == 0) && (i % 5 == 0))
+    	int fizz = 0, buzz = 0;
+    	if (i%3 == 0){
+    		fizz = 1;
+    	}
+    	if (i%5 == 0){
+    		buzz = 1;
+    	}
+
+        if (fizz && buzz)
             strcpy(str, "FizzBuzz");
-        else if (i % 3 == 0)
+        else if (fizz)
             strcpy(str, "Fizz");
-        else if (i % 5 == 0)
+        else if (buzz)
             strcpy(str, "Buzz");
         else
             sprintf(str, "%d", i);
