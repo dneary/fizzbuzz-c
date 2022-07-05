@@ -2,7 +2,10 @@ name: Custom GitHub Actions runner Demo
 on: [push]
 jobs:
   Build-and-Run-FizzBuzz:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, [self-hosted, linux, ARM64]]
+    runs-on: ${{ matrix.os }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
