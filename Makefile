@@ -3,7 +3,9 @@
 	gcc -c -o $@ $<
 
 fizzbuzz: fizzbuzz.o
-	gcc -o $@ $^ 
+	gcc -o $@ $^
 
 clean:
 	rm -f *.o fizzbuzz
+
+all: fizzbuzz
