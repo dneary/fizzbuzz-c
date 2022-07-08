@@ -10,7 +10,7 @@ jobs:
   Container-Build-FizzBuzz:
     strategy:
       matrix:
-        os: [ubuntu-latest, [self-hosted, linux, ARM64]]
+        os: [ubuntu-latest] # , [self-hosted, linux, ARM64]]
     runs-on: ${{ matrix.os }}
 
     steps:
