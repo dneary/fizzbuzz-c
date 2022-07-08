@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag fizzbuzz:$(date +%s)
+      run: docker build . --file Dockerfile --tag fizzbuzz:$GITHUB_REF
     - name: Run the Docker image
-      run: docker run fizzbuzz
+      run: docker run fizzbuzz:$GITHUB_REF
