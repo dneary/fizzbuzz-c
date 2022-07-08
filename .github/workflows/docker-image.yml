@@ -10,12 +10,19 @@ jobs:
   Container-Build-FizzBuzz:
     strategy:
       matrix:
-        os: [ubuntu-latest] # , [self-hosted, linux, ARM64]]
+        os: [[self-hosted, linux, ARM64]] #, [ubuntu-latest]
+
     runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag fizzbuzz.${{ github.sha }}
+    - name: Build the Docker image with Buildah
+      uses: redhat-actions/buildah-build@v2
+      with: 
+        image: fizzbuzz
+        tags: latest ${{ github.sha }}
+        containerfiles: |
+          ./Dockerfile
+
     - name: Run the Docker image
-      run: docker run fizzbuzz.${{ github.sha }}
+      run: podman run fizzbuzz.${{ github.sha }}
