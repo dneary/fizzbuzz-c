@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag fizzbuzz
+      run: docker build . --file Dockerfile --tag fizzbuzz.${{ github.sha }}
     - name: Run the Docker image
-      run: docker run fizzbuzz
+      run: docker run fizzbuzz.${{ github.sha }}
