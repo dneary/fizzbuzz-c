@@ -25,4 +25,4 @@ jobs:
           ./Dockerfile
 
     - name: Run the Docker image
-      run: podman run fizzbuzz.${{ github.sha }}
+      run: podman run fizzbuzz
