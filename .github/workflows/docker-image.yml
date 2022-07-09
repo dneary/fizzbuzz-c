@@ -7,12 +7,17 @@ on:
     branches: [ "master" ]
 
 jobs:
-  Container-Build-FizzBuzz:
-    strategy:
-      matrix:
-        os: [[self-hosted, linux, ARM64]] #, [ubuntu-latest]
+  x86-fizzbuzz-container:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag fizzbuzz:latest
+    - name: Run the Docker image
+      run: docker run fizzbuzz
 
-    runs-on: ${{ matrix.os }}
+  aarch64-fizzbuzz-container:
+    runs-on: [self-hosted, linux, ARM64]
 
     steps:
     - uses: actions/checkout@v3
@@ -26,3 +31,4 @@ jobs:
 
     - name: Run the Docker image
       run: podman run fizzbuzz
+
