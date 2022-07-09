@@ -14,7 +14,8 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag fizzbuzz:latest
     - name: Run the Docker image
-      run: docker run fizzbuzz
+      container:
+        image: fizzbuzz
 
   aarch64-fizzbuzz-container:
     runs-on: [self-hosted, linux, ARM64]
